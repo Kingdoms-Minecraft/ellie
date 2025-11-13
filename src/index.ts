@@ -20,7 +20,7 @@ class CommandHandler extends HandleCommand {
 
 const rcon = new Rcon({
     host: process.env.HOST + "",
-    port: 25015,
+    port: process.env.PORT as unknown as number,
     password: process.env.PASSWORD + "",
     
 })
