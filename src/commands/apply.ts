@@ -15,6 +15,16 @@ export default class Apply extends Command {
     async run(ctx: CommandContext){
         if (ctx.channelId !== process.env.WHITELIST_CHANNEL){return;};
 
+        try {
+            const testDM = await ctx.client.users.write(ctx.author.id, { 
+                content: 'Test DM. If you received this, you can ignore it.' 
+            });
+            await testDM.delete();
+        } catch {
+            ctx.write({ content: 'Please enable your DMs.', flags: 64 });
+            return;
+        }
+
         const alreadyExistsQuery = db.query('SELECT userId FROM Applications WHERE userId = ?');
         const alreadyExists = alreadyExistsQuery.get(ctx.author.id);
 
