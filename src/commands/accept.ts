@@ -80,7 +80,7 @@ export default class Apply extends Command {
                     content: `Whitelisted ${finalUsername}.`
                 });
 
-                await ctx.client.users.write(userId, { content: `You've been whitelisted in ${ctx.guild.name}! Congratulations. Please check out <#${process.env.WHITELIST_CHANNEL}>.` });
+                await ctx.client.users.write(userId, { content: `You've been whitelisted in ${ctx.guild.name.toString}! Congratulations. Please check out <#${process.env.WHITELIST_CHANNEL}>.` });
             } else {
                 await ctx.editOrReply({
                     content: `Invalid Minecraft account for ${minecraftUsername}. Please check that the username is correct.`
