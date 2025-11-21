@@ -12,7 +12,7 @@ import { $ } from 'bun';
 })
 export default class Start extends Command {
     async run(ctx: CommandContext){
-        await $`cd ${process.env.PATH}/scripts && ./backup.sh`;
+        await $`cd ${process.env.SERVER_PATH}/scripts && ./backup.sh`;
         await ctx.write({content: 'Server backed up.'});
     }
 }

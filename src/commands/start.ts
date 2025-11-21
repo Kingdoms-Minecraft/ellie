@@ -12,6 +12,7 @@ import { $ } from 'bun';
 })
 export default class Start extends Command {
     async run(ctx: CommandContext){
-        await $`cd ${process.env.PATH} && ./start.sh 1 0`;
+        await $`cd ${process.env.SERVER_PATH} && ./start.sh 1 0`;
+        await ctx.write({ content: 'Server starting.' });
     }
 }
