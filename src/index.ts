@@ -64,8 +64,8 @@ client.rcon = rcon;
         handleCommand: CommandHandler
     });
 
-    await client.start()
-    .then(() => client.uploadCommands({ cachePath: './commands.json' }));
+    await client.start();
+    // .then(() => client.uploadCommands({ cachePath: './commands.json' }));
 
     (async () => {
         while (true) {

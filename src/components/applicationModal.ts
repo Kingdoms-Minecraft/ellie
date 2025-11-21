@@ -36,7 +36,7 @@ export default class ApplicationModal extends ModalCommand {
         await ctx.client.users.write(ctx.author.id, {embeds: [{
             title: 'Projects',
             description: 'We require everyone to submit project screenshots in order to be accepted. Please also try to describe the submitted projects if possible.',
-            
+            footer: { text: 'Anything you say here is logged. If you would like to add information or communicate back, just message here.' }
         }]});
      }
 }

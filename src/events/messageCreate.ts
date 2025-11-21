@@ -12,11 +12,6 @@ export default createEvent({
     async run(message, client) {
         if (message.author.bot) return;
 
-        if (message.channelId === process.env.WHITELIST_CHANNEL) {
-            message.delete();
-            return;
-        }
-
         if (!message.guildId) {
             const userExists = checkUserQuery.get(message.author.id) as { userId: string } | null;
             const threadResult = getThreadId.get(message.author.id) as { threadId: string } | null;
