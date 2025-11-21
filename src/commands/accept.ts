@@ -28,7 +28,7 @@ async function validAccount(username: string): Promise<string | null> {
 
 @Declare({
     name: 'accept',
-    description: 'Accept the user.',
+    description: 'Accept the users application.',
     defaultMemberPermissions: ["Administrator"],
     ignore: IgnoreCommand.Slash
 })
@@ -67,7 +67,7 @@ export default class Apply extends Command {
             if (isValid) {
                 await ctx.client.rcon.exec(`whitelist add ${finalUsername}`)
 
-                await ctx.client.members.addRole(ctx.guildId, userId, '1404560686079672330')
+                await ctx.client.members.addRole(ctx.guildId, userId, `${process.env.WHITELIST_ROLE}`)
 
                 await ctx.client.threads.edit(ctx.channelId, {
                     name: `${(await ctx.client.users.fetch(userId)).username}'s Application - ACCEPTED`
@@ -80,7 +80,7 @@ export default class Apply extends Command {
                     content: `Whitelisted ${finalUsername}.`
                 });
 
-                await ctx.client.users.write(userId, { content: `You've been whitelisted in ${ctx.guild.name.toString}! Congratulations. Please check out <#${process.env.WHITELIST_CHANNEL}>.` });
+                await ctx.client.users.write(userId, { content: `You've been whitelisted in ${(await ctx.client.guilds.fetch(ctx.guildId)).name.toString()}! Congratulations. Please check out <#${process.env.WHITELIST_CHANNEL}>.` });
             } else {
                 await ctx.editOrReply({
                     content: `Invalid Minecraft account for ${minecraftUsername}. Please check that the username is correct.`
