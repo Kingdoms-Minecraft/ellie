@@ -34,6 +34,15 @@ rcon.on('disconnected', async () => {
     auth = false;
 });
 
+process.on('uncaughtException', (error) => {
+    console.error('Uncaught Exception:', error);
+    process.exit(1);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+});
+
 const client = new Client({
     commands: {
         prefix: () => {
@@ -56,6 +65,12 @@ setInterval(async () => {
     
     client.gateway.setPresence(presenceData);
 }, 20000);
+
+setInterval(async () => {
+    const start = Date.now();
+    console.log('Keepalive', start);
+    await new Promise(resolve => setTimeout(resolve, 100));
+}, 1000);
 
 client.rcon = rcon;
 
