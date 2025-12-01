@@ -26,7 +26,7 @@ export default class ApplyButton extends ComponentCommand {
             const alreadyExists = alreadyExistsQuery.get(ctx.author.id);
     
             if (alreadyExists) {
-                return ctx.interaction.write({ content: 'You already have an application in progress.', flags: 64 });
+                return ctx.interaction.write({ content: 'You already have an application in progress. Please click Cancel if you clicked out of your prompt.', flags: 64 });
             };
     
             const placeholderQuery = db.query(`INSERT INTO Applications (userId, questionNum, threadId) VALUES (?, ?, ?)`);
